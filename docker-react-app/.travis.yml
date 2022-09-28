@@ -1,0 +1,17 @@
+sudo: "required"
+
+language: generic
+
+service:
+  - docker
+
+before_install:
+  - echo "start creating docker image"
+  - docker build -t rojae/docker-react-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true rojae/docker-react-app npm run test -- --coverage
+
+after_success:
+  - echo "Test Success"
+
