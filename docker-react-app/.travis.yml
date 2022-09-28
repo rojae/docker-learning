@@ -7,10 +7,10 @@ service:
 
 before_install:
   - echo "start creating docker image"
-  - docker build -t rojae/docker-react-app -f Dockerfile.dev .
+  - docker build -t rojae/docker-react-app -f Dockerfile ./
 
-script:
-  - docker run -e CI=true rojae/docker-react-app npm run test -- --coverage
+#script:
+#  - docker run -it -p 80:80 -e CI=true rojae/docker-react-app
 
 deploy:
   provider: elasticbeanstalk
